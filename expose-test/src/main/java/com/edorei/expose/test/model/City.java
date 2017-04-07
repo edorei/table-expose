@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.edorei.expose.annotation.ExposeField;
+
 @Entity
 @Table(name="city")
 public class City implements Serializable{
@@ -21,6 +23,7 @@ public class City implements Serializable{
 	@Column(name = "city")
 	private String city;
 	
+	@ExposeField(name="country_id")
 	@Column(name = "country_id")
 	private int countryId;
 	
