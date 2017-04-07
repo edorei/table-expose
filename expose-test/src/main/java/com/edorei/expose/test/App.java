@@ -7,6 +7,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import com.edorei.expose.Expose;
+import com.edorei.expose.api.ExposeRule;
+import com.edorei.expose.test.model.City;
 import com.edorei.expose.test.model.Country;
 
 public class App {
@@ -16,14 +19,14 @@ public class App {
     	
     	entityManager.getTransaction().begin();
     	
-    	TypedQuery<Country> query = entityManager.createQuery("from Country",Country.class);
-    	List<Country> countries = query.getResultList();
-    	for (Country country : countries) {
-			System.out.println(country);
-		}
-    	
+    	TypedQuery<City> query = entityManager.createQuery("from City",City.class);
+    	List<City> cities = query.getResultList();
+    	   	
     	entityManager.getTransaction().commit();
     	entityManager.close();
     	emf.close();
+    	
+    	ExposeRule<City> expose = new Expose<City>();
+    	expose.toExcel(cities);
     }
 }
